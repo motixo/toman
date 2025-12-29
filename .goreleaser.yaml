@@ -1,0 +1,63 @@
+# yaml-language-server: $schema=https://goreleaser.com/static/schema.json
+version: 2
+
+project_name: toman
+
+before:
+  hooks:
+    - go mod tidy
+
+builds:
+  - id: toman
+    binary: toman
+    main: ./cmd/app/main.go
+    env:
+      - CGO_ENABLED=0
+    goos:
+      - linux
+      - windows
+      - darwin
+    goarch:
+      - amd64
+      - arm64
+    ldflags:
+      - -s -w -X main.version={{.Version}}
+
+archives:
+  - name_template: "{{ .ProjectName }}_{{ .Version }}_{{ .Os }}_{{ .Arch }}"
+    format: tar.gz
+    format_overrides:
+      - goos: windows
+        format: zip
+
+nfpms:
+  - package_name: toman
+    maintainer: "Your Name <you@example.com>"
+    description: "Toman CLI: Price tracking tool"
+    homepage: "https://github.com/youruser/toman"
+    license: "GPLv3"
+    formats:
+      - deb
+      - rpm
+    contents:
+      - src: toman
+        dst: /usr/bin/toman
+
+brews:
+  - repository:
+      owner: your-github-username
+      name: homebrew-tap
+    directory: Formula
+    homepage: "https://github.com/your-github-username/toman"
+    description: "Toman CLI price tracking tool"
+    install: |
+      bin.install "toman"
+
+checksum:
+  name_template: "checksums.txt"
+
+snapshot:
+  version_template: "{{ .Tag }}-next"
+
+changelog:
+  disable: false
