@@ -34,9 +34,9 @@ archives:
 
 nfpms:
   - package_name: toman
-    maintainer: "Your Name <you@example.com>"
+    maintainer: "motixo <motixo@proton.me>"
     description: "Toman CLI: Price tracking tool"
-    homepage: "https://github.com/youruser/toman"
+    homepage: "https://github.com/motixo/toman"
     license: "GPLv3"
     formats:
       - deb
@@ -45,10 +45,10 @@ nfpms:
 
 brews:
   - repository:
-      owner: your-github-username
+      owner: motixo
       name: homebrew-tap
     directory: Formula
-    homepage: "https://github.com/your-github-username/toman"
+    homepage: "https://github.com/motixo/toman"
     description: "Toman CLI price tracking tool"
     install: |
       bin.install "toman"
