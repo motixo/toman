@@ -1,5 +1,9 @@
+version: 2
 project_name: toman
 release:
+  github:
+    owner: motixo
+    name: toman
   name_template: '{{.Tag}}'
 builds:
   - id: toman
@@ -52,24 +56,23 @@ archives:
       - goos: windows
         formats:
           - zip
-        format: zip
     files:
+      - src: license*
       - src: LICENSE*
+      - src: readme*
       - src: README*
-    format: tar.gz
+      - src: changelog*
+      - src: CHANGELOG*
 nfpms:
   - file_name_template: '{{ .PackageName }}_{{ .Version }}_{{ .Os }}_{{ .Arch }}{{ with .Arm }}v{{ . }}{{ end }}{{ with .Mips }}_{{ . }}{{ end }}{{ if not (eq .Amd64 "v1") }}{{ .Amd64 }}{{ end }}'
     package_name: toman
-    contents:
-      - src: toman
-        dst: /usr/bin/toman
-    id: toman-packages
+    id: default
     formats:
       - deb
       - rpm
-    homepage: https://github.com/motixo/toman
-    maintainer: motixo <motixo@proton.me>
-    description: 'Toman CLI: A powerful cross-platform tool for price tracking'
+    homepage: https://github.com/youruser/toman
+    maintainer: Your Name <you@example.com>
+    description: 'Toman CLI: Price tracking tool'
     license: GPLv3
     bindir: /usr/bin
     libdirs:
@@ -77,7 +80,6 @@ nfpms:
       carchive: /usr/lib
       cshared: /usr/lib
 snapshot:
-  name_template: '{{ .Tag }}-next'
   version_template: '{{ .Tag }}-next'
 checksum:
   name_template: checksums.txt
@@ -85,11 +87,7 @@ checksum:
 docker_digest:
   name_template: digests.txt
 changelog:
-  filters:
-    exclude:
-      - '^docs:'
-      - '^test:'
-  sort: asc
+  disable: "false"
   format: '{{ .SHA }} {{ .Message }}'
 dist: dist
 env_files:
@@ -99,7 +97,6 @@ env_files:
 before:
   hooks:
     - go mod tidy
-    - go mod vendor
 source:
   name_template: '{{ .ProjectName }}-{{ .Version }}'
   format: tar.gz
@@ -171,7 +168,7 @@ gitlab_urls:
 brews:
   - name: toman
     repository:
-      owner: motixo
+      owner: your-github-username
       name: homebrew-tap
     commit_author:
       name: goreleaserbot
@@ -181,6 +178,6 @@ brews:
     install: |
       bin.install "toman"
     description: Toman CLI price tracking tool
-    homepage: https://github.com/motixo/toman
+    homepage: https://github.com/your-github-username/toman
     goarm: "6"
     goamd64: v1

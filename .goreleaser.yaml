@@ -25,10 +25,12 @@ builds:
 
 archives:
   - name_template: "{{ .ProjectName }}_{{ .Version }}_{{ .Os }}_{{ .Arch }}"
-    format: tar.gz
+    formats:
+      - tar.gz
     format_overrides:
       - goos: windows
-        format: zip
+        formats:
+          - zip
 
 nfpms:
   - package_name: toman
@@ -39,9 +41,7 @@ nfpms:
     formats:
       - deb
       - rpm
-    contents:
-      - src: toman
-        dst: /usr/bin/toman
+    bindir: /usr/bin
 
 brews:
   - repository:

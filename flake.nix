@@ -31,7 +31,6 @@
 
           shellHook = ''
             echo "--- Toman CLI Dev Environment ---"
-            echo "To release, run: goreleaser release --snapshot --clean"
           '';
         };
       }
