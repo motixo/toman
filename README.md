@@ -1,15 +1,16 @@
+<img src="https://github.com/motixo/toman/blob/main/asset/toman.jpg" width="350" alt="toman">
+
 # Toman CLI
 
-Toman CLI is a simple command-line tool to fetch current prices of currencies and gold-coin in Toman from TGJU.
+Toman CLI is a simple command-line tool to fetch current prices of currencies and gold-coin from TGJU.
 
-## 📖 Usage
+## Usage
 
 ### 1. Fetch All Prices
 Run the application without arguments to get a summary of all configured assets.
 
 ```bash
-./toman
-
+$toman
 ```
 
 **Output:**
@@ -26,8 +27,7 @@ TETHER      : 50,300 Toman
 Use flags to fetch only the data you need.
 
 ```bash
-./toman -usd -tether
-
+$toman -usd -tether
 ```
 
 **Output:**
@@ -42,12 +42,11 @@ TETHER      : 50,300 Toman
 View all available flags and options.
 
 ```bash
-./toman -help
-
+$toman -help
 ```
 
 
-## ⚠️ Disclaimer
+## Disclaimer
 
 This tool is intended for **educational purposes only**. The data is scraped from public web sources (`tgju.org`).
 
